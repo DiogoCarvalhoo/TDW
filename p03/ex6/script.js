@@ -1,0 +1,60 @@
+function main() {
+
+    const cards = document.getElementById("cards");
+    const arrClass = document.querySelectorAll(".btn");
+    for (let i of arrClass) {
+        i.addEventListener("click", handleCards);
+    }
+
+}
+
+function handleCards(e) {
+
+    if ( check_color(e) ) {
+        return
+    }
+
+    cards.innerHTML = ""
+    for (let i = 1; i <= e.target.value; i++) {
+        switch (i % 4) {
+            case 0:
+            add_card("Cartão de exemplo", "bg-success");
+            break;
+            case 1:
+            add_card("Cartão de exemplo", "bg-danger");
+            break;
+            case 2:
+            add_card("Cartão de exemplo", "bg-info");
+            break;
+            default:
+            add_card("Cartão de exemplo", "bg-primary");
+            break;
+        }
+    }
+}
+
+
+function check_color(e) {
+
+    if (e.target.value === "Dark") {
+        document.body.style.background = "Black";
+        return true;
+    } 
+    else if (e.target.value === "Light") {
+        document.body.style.background = "White";
+        return true;
+    }
+
+    return false;
+}
+
+
+function add_card(text, color) {
+    cards.innerHTML += "<div class=\"col-md-3 mb-3\"> \
+                            <div class=\"card "+ color +"\"> \
+                            <div class=\"card-body\"> \
+                                " + text + " \
+                            </div> \
+                            </div> \
+                        </div>";
+}
