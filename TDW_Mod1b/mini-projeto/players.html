@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+
+    <title>NBA Followers</title>
+    <meta content="" name="description" />
+    <meta content="" name="keywords" />
+
+    <!-- Favicons -->
+    <link href="assets/img/logo.png" rel="icon" />
+    <link href="assets/img/logo.png" rel="apple-touch-icon" />
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+      rel="stylesheet"
+    />
+
+    <!-- Vendor CSS Files -->
+    <link
+      href="assets/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet" />
+    <link href="assets/vendor/quill/quill.snow.css" rel="stylesheet" />
+    <link href="assets/vendor/quill/quill.bubble.css" rel="stylesheet" />
+    <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet" />
+    <link href="assets/vendor/simple-datatables/style.css" rel="stylesheet" />
+
+    <!-- Template Main CSS File -->
+    <link href="assets/css/style.css" rel="stylesheet" />
+
+    <!-- =======================================================
+  * Template Name: NiceAdmin - v2.4.1
+  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+  </head>
+
+  <body onload="players_main()">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header fixed-top d-flex align-items-center">
+      <i class="bi bi-list toggle-sidebar-btn"></i>
+      <div class="d-flex align-items-center justify-content-between">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <img src="assets/img/logo.png" alt="" />
+          <span class="d-none d-lg-block">NBAFollowers</span>
+        </a>
+      </div>
+      <!-- End Logo -->
+
+      <div class="search-bar">
+        <form
+          class="search-form d-flex align-items-center"
+          onsubmit="event.preventDefault(); filterPlayersByName()"
+        >
+          <input
+            id="player_name_filter_input"
+            type="text"
+            name="query"
+            placeholder="Search"
+            title="Enter search keyword"
+          />
+          <button type="submit" title="Search">
+            <i class="bi bi-search"></i>
+          </button>
+        </form>
+      </div>
+      <!-- End Search Bar -->
+    </header>
+    <!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+      <ul class="sidebar-nav" id="sidebar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">
+            <i class="bi bi-grid"></i>
+            <span>HomePage</span>
+          </a>
+        </li>
+        <!-- End HomePage Nav -->
+
+        <li class="nav-heading">Pages</li>
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="players.html">
+            <i class="bi bi-person"></i>
+            <span>Players</span>
+          </a>
+        </li>
+        <!-- End Players Page Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="teams.html">
+            <i class="bi bi-person"></i>
+            <span>Teams</span>
+          </a>
+        </li>
+        <!-- End Teams Page Nav -->
+
+        <li class="nav-item">
+          <a class="nav-link collapsed" href="gamelogin.html">
+            <i class="bi bi-person"></i>
+            <span>Game</span>
+          </a>
+        </li>
+        <!-- End GameLogin Page Nav -->
+      </ul>
+    </aside>
+    <!-- End Sidebar-->
+
+    <main id="main" class="main">
+      <div class="pagetitle">
+        <h1>Players</h1>
+        <nav>
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active">Players</li>
+          </ol>
+        </nav>
+      </div>
+      <!-- End Page Title -->
+
+      <section class="section dashboard">
+        <div class="row">
+          <!-- Players Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card sales-card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Players <span>| Number of NBA Players</span>
+                </h5>
+
+                <div class="d-flex align-items-center">
+                  <div
+                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                  >
+                    <i class="ri-user-3-fill"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6
+                      id="number_nba_players_h6"
+                      onclick="filterPlayersByConference('all')"
+                    ></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Players Card -->
+
+          <!-- West Teams Card -->
+          <div class="col-xxl-4 col-md-6">
+            <div class="card info-card revenue-card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  WST <span>| Western Conference Players</span>
+                </h5>
+
+                <div class="d-flex align-items-center">
+                  <div
+                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                  >
+                    <i class="ri-team-fill"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6
+                      id="number_west_players_h6"
+                      onclick="filterPlayersByConference('West')"
+                    ></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End West Teams Card -->
+
+          <!-- East Teams Card -->
+          <div class="col-xxl-4 col-xl-12">
+            <div class="card info-card customers-card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  EST <span>| Eastern Conference Players</span>
+                </h5>
+
+                <div class="d-flex align-items-center">
+                  <div
+                    class="card-icon rounded-circle d-flex align-items-center justify-content-center"
+                  >
+                    <i class="ri-team-fill"></i>
+                  </div>
+                  <div class="ps-3">
+                    <h6
+                      id="number_east_players_h6"
+                      onclick="filterPlayersByConference('East')"
+                    ></h6>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End East Teams Card -->
+
+          <!-- Players -->
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">
+                  Players <span>| Season 2022/2023</span>
+                </h5>
+
+                <div id="players_content_div" class="container">
+                  <div id="players_content_row" class="row"></div>
+                </div>
+
+                <div class="pagination">
+                  <a href="#" onclick="handlePlayersPageChange('L')">&laquo;</a>
+                  <a
+                    id="paginator_number_1"
+                    href="#"
+                    name="a_player_paginator"
+                    onclick="handlePlayersPageChange('1')"
+                  ></a>
+                  <a
+                    id="paginator_number_2"
+                    href="#"
+                    name="a_player_paginator"
+                    onclick="handlePlayersPageChange('2')"
+                  ></a>
+                  <a
+                    id="paginator_number_3"
+                    class="active"
+                    href="#"
+                    name="a_player_paginator"
+                    onclick="handlePlayersPageChange('3')"
+                  ></a>
+                  <a
+                    id="paginator_number_4"
+                    href="#"
+                    name="a_player_paginator"
+                    onclick="handlePlayersPageChange('4')"
+                  ></a>
+                  <a
+                    id="paginator_number_5"
+                    href="#"
+                    name="a_player_paginator"
+                    onclick="handlePlayersPageChange('5')"
+                  ></a>
+                  <a href="#" onclick="handlePlayersPageChange('R')">&raquo;</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- End Players -->
+        </div>
+      </section>
+    </main>
+    <!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+      <div class="copyright">
+        &copy; Copyright <strong><span>NiceAdmin</span></strong
+        >. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+      </div>
+    </footer>
+    <!-- End Footer -->
+
+    <a
+      href="#"
+      class="back-to-top d-flex align-items-center justify-content-center"
+      ><i class="bi bi-arrow-up-short"></i
+    ></a>
+
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/quill/quill.min.js"></script>
+    <script src="assets/vendor/simple-datatables/simple-datatables.js"></script>
+    <script src="assets/vendor/tinymce/tinymce.min.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Personal JS File -->
+    <script src="players.js"></script>
+  </body>
+</html>
